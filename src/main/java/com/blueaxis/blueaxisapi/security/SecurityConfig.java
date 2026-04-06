@@ -33,9 +33,10 @@ public class SecurityConfig {
                     "/",
                     "/api/register",
                     "/api/login",
-                    "/api/blogs/**",
-                    "/api/articles/**",
-                    "/api/infographics/**"
+                    "/api/blogs",
+                    "/api/articles",
+                    "/api/infographics",
+                    "/api/getblogs"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

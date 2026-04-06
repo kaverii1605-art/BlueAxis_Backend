@@ -54,6 +54,7 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
 			<!-- Spring Security -->
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
@@ -80,6 +81,8 @@
 		    <version>0.11.5</version>
 		    <scope>runtime</scope>
 		</dependency>
+=======
+>>>>>>> 5ded778dd94c2a4d834ffcf431c557ed4fb43775
 	</dependencies>
 
 	<build>

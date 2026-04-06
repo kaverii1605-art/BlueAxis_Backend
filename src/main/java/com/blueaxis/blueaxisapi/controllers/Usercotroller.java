@@ -24,7 +24,7 @@ public class Usercotroller {
 	@Autowired
 	private UserRepo repo;
 	
-<<<<<<< HEAD
+
 	@Autowired
 	private UserService service;
 
@@ -49,10 +49,7 @@ public class Usercotroller {
 	        return ResponseEntity.status(401).body(response);
 	    }
 	}
-=======
-	 @Autowired
-	    private UserService service;
->>>>>>> 5ded778dd94c2a4d834ffcf431c557ed4fb43775
+	
 
 	    @PostMapping("/register")
 	    public Map<String,String> register(@RequestBody User user){
@@ -64,7 +61,7 @@ public class Usercotroller {
 
 	        return response;
 	    }
-<<<<<<< HEAD
+
 }
 	    
 //	    @PostMapping("/login")
@@ -88,28 +85,28 @@ public class Usercotroller {
 //	        }
 //
 //	    }}
-=======
+
 	    
 	    
-	    @PostMapping("/login")
-	    public ResponseEntity<Map<String,String>> login(@RequestBody User user){
+//	    @PostMapping("/login")
+//	    public ResponseEntity<Map<String,String>> login(@RequestBody User user){
+//
+//	        User existingUser = repo.findByEmailAndPassword(user.getEmail(), user.getPassword());
+//
+//	        Map<String,String> response = new HashMap<>();
+//
+//	        if(existingUser != null){
+//
+//	            response.put("message","Login successful");
+//
+//	            return ResponseEntity.ok(response);
+//
+//	        } else {
+//
+//	            response.put("message","Invalid email or password");
+//
+//	            return ResponseEntity.status(401).body(response);
+//	        }
+//
+//	    }}
 
-	        User existingUser = repo.findByEmailAndPassword(user.getEmail(), user.getPassword());
-
-	        Map<String,String> response = new HashMap<>();
-
-	        if(existingUser != null){
-
-	            response.put("message","Login successful");
-
-	            return ResponseEntity.ok(response);
-
-	        } else {
-
-	            response.put("message","Invalid email or password");
-
-	            return ResponseEntity.status(401).body(response);
-	        }
-
-	    }}
->>>>>>> 5ded778dd94c2a4d834ffcf431c557ed4fb43775

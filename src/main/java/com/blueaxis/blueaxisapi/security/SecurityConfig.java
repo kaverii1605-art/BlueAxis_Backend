@@ -38,7 +38,10 @@ public class SecurityConfig {
                     "/api/infographics",
                     "/api/getblogs",
                     "api/getarticles",
-                    "api/getinfo"  ,
+                    "api/getinfo" ,
+                    "api/addblog",
+                    "api/addarticle",
+                    "api/addinfo",
                     "api/postContact").permitAll()
                 .anyRequest().authenticated()
             )

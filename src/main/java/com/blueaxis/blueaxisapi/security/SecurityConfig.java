@@ -37,12 +37,12 @@ public class SecurityConfig {
                     "/api/articles",
                     "/api/infographics",
                     "/api/getblogs",
-                    "api/getarticles",
-                    "api/getinfo" ,
-                    "api/addblog",
-                    "api/addarticle",
-                    "api/addinfo",
-                    "api/postContact").permitAll()
+                    "/api/getarticles",
+                    "/api/getinfo" ,
+                    "/api/addblog",
+                    "/api/addarticle",
+                    "/api/addinfo",
+                    "/api/postContact").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

@@ -18,6 +18,7 @@ public class CorsConfig {
 
 	                registry.addMapping("/**")
 	                        .allowedOrigins("http://127.0.0.1:5501",
+	                                "https://*.vercel.app",
 	                        		"newdeployment-two.vercel.app",
 	                        		"blueaxis-frontend.vercel.app")
 	                        .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")

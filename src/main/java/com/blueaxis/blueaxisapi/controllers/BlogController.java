@@ -19,7 +19,7 @@ import com.blueaxis.blueaxisapi.services.BlogService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
+
 public class BlogController {
     @Autowired
     private BlogService blogService;

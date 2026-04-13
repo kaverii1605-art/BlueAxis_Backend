@@ -48,7 +48,7 @@ public class BlogController {
     @GetMapping("/blogs")
     public Page<Blog> getBlogs(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "6") int size) {
+            @RequestParam(defaultValue = "4") int size) {
 
         // Prevent negative values
         page = Math.max(page, 0);

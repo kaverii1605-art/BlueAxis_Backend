@@ -2,6 +2,7 @@ package com.blueaxis.blueaxisapi.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,20 +30,32 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(
                     "/",
                     "/api/register",
                     "/api/login",
+                    "/api/postContact",
+
                     "/api/blogs",
                     "/api/articles",
                     "/api/infographics",
+
                     "/api/getblogs",
+                    "/api/getblog/**",
                     "/api/getarticles",
-                    "/api/getinfo" ,
+                    "/api/getarticle/**",
+                    "/api/getinfo",
+                    "/api/getinfographic/**"
+                ).permitAll()
+
+                // keep these authenticated if they are admin pages
+                .requestMatchers(
                     "/api/addblog",
                     "/api/addarticle",
-                    "/api/addinfo",
-                    "/api/postContact").permitAll()
+                    "/api/addinfo"
+                ).authenticated()
+
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

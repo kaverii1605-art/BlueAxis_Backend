@@ -21,7 +21,8 @@ public class CorsConfig {
 	                        		"http://127.0.0.1:5501",
 	                                "http://localhost:5501",
 	                                "https://newdeployment-two.vercel.app",
-	                                "https://blueaxis-frontend.vercel.app")
+	                                "https://blueaxis-frontend.vercel.app",
+	                                "https://blueaxismedia.in/")
 	                        .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
 	                        .allowedHeaders("*");
 	            }

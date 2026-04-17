@@ -13,6 +13,6 @@ import com.blueaxis.blueaxisapi.models.Articles;
 public interface ArticleRepo extends JpaRepository<Articles, Long> {
 
 	
-	  @Query("SELECT new com.blueaxis.blueaxisapi.dto.ArticleSummaryDto(a.id, a.title, a.category, a.imageUrl) FROM Article a ORDER BY a.id DESC")
+	  @Query("SELECT new com.blueaxis.blueaxisapi.dto.ArticleSummaryDto(a.id, a.title, a.category, a.imageUrl) FROM Articles a ORDER BY a.id DESC")
 	    List<ArticleSummaryDto> findAllArticleSummaries();
 }

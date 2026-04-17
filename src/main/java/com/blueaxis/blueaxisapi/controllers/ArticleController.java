@@ -6,13 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.blueaxis.blueaxisapi.dto.ArticleSummaryDto;
 import com.blueaxis.blueaxisapi.models.Articles;
 import com.blueaxis.blueaxisapi.repository.ArticleRepo;
 import com.blueaxis.blueaxisapi.services.ArticleService;
@@ -37,14 +35,8 @@ public class ArticleController {
 		
 	}
 	
-	 @GetMapping("/getarticles")
-	    public List<ArticleSummaryDto> getArticles() {
-	        return articlerepo.findAllArticleSummaries();
-	    }
-
-	    @GetMapping("/getarticle/{id}")
-	    public Articles getArticleById(@PathVariable Long id) {
-	        return articlerepo.findById(id)
-	                .orElseThrow(() -> new RuntimeException("Article not found with id: " + id));
-	    }
+	@GetMapping("/getarticles")
+	public List<Articles> getarticle(){
+		return articlerepo.findAll();
+	}
 }

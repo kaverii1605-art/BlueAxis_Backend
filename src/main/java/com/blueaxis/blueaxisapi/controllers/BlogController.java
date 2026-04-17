@@ -7,12 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blueaxis.blueaxisapi.dto.BlogSummaryDto;
 import com.blueaxis.blueaxisapi.models.Blog;
 import com.blueaxis.blueaxisapi.repository.BlogRepo;
 import com.blueaxis.blueaxisapi.services.BlogService;
@@ -38,9 +40,9 @@ public class BlogController {
     
     
     @GetMapping("/getblogs")
-    public List<Blog> getBlogs(){
+    public List<BlogSummaryDto> getBlogs(){
 
-    return blogRepository.findAll();
+    return blogRepository.findAllBlogSummaries();
 
     }
   
@@ -56,7 +58,15 @@ public class BlogController {
 
         return blogRepository.findAll(PageRequest.of(page, size));
     }
+    
+    @GetMapping("/getblog/{id}")
+    public Blog getBlogById(@PathVariable Long id) {
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Blog not found with id: " + id));
+    }
 }
+
+
 
 
 

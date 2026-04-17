@@ -49,7 +49,7 @@ public class SecurityConfig {
                     "/api/blogs",
                     "/api/articles",
                     "/api/infographics",
-
+                    "/api/getarticle/**",
                     "/api/getblogs",
                     "/api/getblog/**",
                     "/api/getarticles",

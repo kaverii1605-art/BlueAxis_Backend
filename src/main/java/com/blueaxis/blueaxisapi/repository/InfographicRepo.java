@@ -8,4 +8,5 @@ import com.blueaxis.blueaxisapi.models.Infographic;
 @Repository
 public interface InfographicRepo extends JpaRepository<Infographic, Long> {
 
+	
 }

@@ -2,6 +2,8 @@ package com.blueaxis.blueaxisapi.models;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,12 +11,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name="articles")
+@Document(collection = "articles")
 public class Articles {
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	private Long id;
 
@@ -22,10 +23,10 @@ public class Articles {
 	
 	private String title;
 	
-	 @Column(name = "image_url")
+//	 @Column(name = "image_url")
 	    private String imageUrl;
 
-	    @Column(columnDefinition = "LONGTEXT")
+//	    @Column(columnDefinition = "LONGTEXT")
 	    private String content;
 
 	    private LocalDateTime createdAt;

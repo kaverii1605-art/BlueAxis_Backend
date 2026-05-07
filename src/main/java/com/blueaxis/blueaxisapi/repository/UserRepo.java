@@ -1,12 +1,10 @@
 package com.blueaxis.blueaxisapi.repository;
 
-import java.util.Optional;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.blueaxis.blueaxisapi.models.User;
 
-public interface UserRepo extends JpaRepository<User, Long> {
+public interface UserRepo extends MongoRepository<User, Long> {
 
 
 	User findByEmail(String email);

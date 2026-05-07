@@ -1,9 +1,9 @@
 package com.blueaxis.blueaxisapi.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.blueaxis.blueaxisapi.models.Contacts;
 
-public interface ContactRepo extends JpaRepository<Contacts, Long> {
+public interface ContactRepo extends MongoRepository<Contacts, Long> {
 
 }

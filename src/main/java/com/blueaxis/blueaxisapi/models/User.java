@@ -1,13 +1,15 @@
 package com.blueaxis.blueaxisapi.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import jakarta.persistence.*;
 
-@Entity
-@Table(name="users")
+@Document(collection = "users")
+
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String email;

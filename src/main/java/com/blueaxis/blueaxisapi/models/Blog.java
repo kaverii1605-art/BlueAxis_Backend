@@ -4,18 +4,13 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
 
 
 @Document(collection = "blogs")
 
 public class Blog {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	private Long id;
 
@@ -23,10 +18,10 @@ public class Blog {
 
     private String category;
 
-//    @Column(name = "image_url")
+
     private String imageUrl;
 
-//    @Column(columnDefinition = "LONGTEXT")
+
     private String content;
 
     private LocalDateTime createdAt;

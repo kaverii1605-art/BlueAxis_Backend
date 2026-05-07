@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.blueaxis.blueaxisapi.models.Contacts;
 
-public interface ContactRepo extends MongoRepository<Contacts, Long> {
+public interface ContactRepo extends MongoRepository<Contacts, String> {
 
 }

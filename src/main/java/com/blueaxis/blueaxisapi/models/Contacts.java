@@ -2,12 +2,7 @@ package com.blueaxis.blueaxisapi.models;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
 
 
 
@@ -15,18 +10,15 @@ import jakarta.persistence.Table;
 
 public class Contacts {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String name;
     private String email;
     private String phone;
 
-//    @Column(name="company_name")
     private String companyName;
 
-//    @Column(columnDefinition = "TEXT")
     private String message;
     
     public Contacts() {}

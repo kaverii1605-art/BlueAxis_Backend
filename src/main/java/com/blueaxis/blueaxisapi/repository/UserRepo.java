@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.blueaxis.blueaxisapi.models.User;
 
-public interface UserRepo extends MongoRepository<User, Long> {
+public interface UserRepo extends MongoRepository<User, String> {
 
 
 	User findByEmail(String email);

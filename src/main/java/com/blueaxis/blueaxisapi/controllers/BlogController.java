@@ -60,7 +60,7 @@ public class BlogController {
     }
     
     @GetMapping("/getblog/{id}")
-    public Blog getBlogById(@PathVariable Long id) {
+    public Blog getBlogById(@PathVariable String id) {
         return blogRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Blog not found with id: " + id));
     }

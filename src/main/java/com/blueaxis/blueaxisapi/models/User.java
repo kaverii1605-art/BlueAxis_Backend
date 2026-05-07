@@ -14,8 +14,17 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private String resetToken;
 
-    public User(){}
+    public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
+	public User(){}
 
     public Long getId(){ return id; }
 

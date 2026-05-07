@@ -2,9 +2,11 @@ package com.blueaxis.blueaxisapi.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.blueaxis.blueaxisapi.models.User;
 import com.blueaxis.blueaxisapi.repository.UserRepo;
+import com.blueaxis.blueaxisapi.services.EmailService;
 import com.blueaxis.blueaxisapi.services.UserService;
 
 
@@ -27,6 +30,12 @@ public class Usercotroller {
 
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@PostMapping("/login")
 	public ResponseEntity<Map<String,String>> login(@RequestBody User user){
@@ -61,7 +70,57 @@ public class Usercotroller {
 
 	        return response;
 	    }
+	    
+	    
+	    @PostMapping("/forgot-password")
+	    public Map<String, String> forgotPassword(@RequestBody Map<String, String> request) {
 
+	        String email = request.get("email");
+
+	        User user = repo.findByEmail(email);
+
+	        if (user == null) {
+	            return Map.of("message", "Email not found");
+	        }
+
+	        String token = UUID.randomUUID().toString();
+
+	        user.setResetToken(token);
+	        repo.save(user);
+
+	        String resetLink = "http://127.0.0.1:5501/reset-password.html?token=" + token;
+
+	        String message = "Hello,\n\n"
+	                + "Click the link below to reset your password:\n"
+	                + resetLink + "\n\n"
+	                + "If you did not request this, please ignore this email.";
+
+	        emailService.sendEmail(email, "Reset Your Password", message);
+
+	        return Map.of("message", "Reset password link sent to your email");
+	    }
+	    
+	    
+	    @PostMapping("/reset-password")
+	    public Map<String, String> resetPassword(@RequestBody Map<String, String> request) {
+
+	        String token = request.get("token");
+	        String newPassword = request.get("password");
+
+	        User user = repo.findByResetToken(token);
+
+	        if (user == null) {
+	            return Map.of("message", "Invalid or expired reset link");
+	        }
+
+	        user.setPassword(passwordEncoder.encode(newPassword));
+	        user.setResetToken(null);
+
+	        repo.save(user);
+
+	        return Map.of("message", "Password reset successfully");
+	    }
+	    
 }
 	    
 //	    @PostMapping("/login")

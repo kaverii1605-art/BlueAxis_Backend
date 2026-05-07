@@ -22,13 +22,26 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   FilterChain filterChain)
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
             throws ServletException, IOException {
+
+        String path = request.getServletPath();
+
+        if (
+            path.equals("/api/forgot-password") ||
+            path.equals("/api/reset-password") ||
+            path.equals("/api/login") ||
+            path.equals("/api/register") ||
+            path.startsWith("/api/get")
+        ) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         String header = request.getHeader("Authorization");
 
-        if(header != null && header.startsWith("Bearer ")){
+        if (header != null && header.startsWith("Bearer ")) {
 
             String token = header.substring(7);
             String email = jwtUtil.extractEmail(token);
@@ -41,6 +54,4 @@ public class JwtFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
-    
-    
 }

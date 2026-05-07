@@ -45,6 +45,9 @@ public class SecurityConfig {
                     "/api/register",
                     "/api/login",
                     "/api/postContact",
+                    
+                    "/api/forgot-password",
+                    "/api/reset-password",
 
                     "/api/blogs",
                     "/api/articles",

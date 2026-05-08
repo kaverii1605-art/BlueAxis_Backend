@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.blueaxis.blueaxisapi.models.Articles;
 
 @Repository
-public interface ArticleRepo extends MongoRepository<Articles, Long> {
+public interface ArticleRepo extends MongoRepository<Articles, String> {
 
 }

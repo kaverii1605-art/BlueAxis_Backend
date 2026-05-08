@@ -111,10 +111,20 @@ public class Usercotroller {
 	        repo.save(user);
 
 	        String resetLink = "http://127.0.0.1:5501/reset-password.html?token=" + token;
+	        String vercelLink = "https://newdeployment-two.vercel.app/reset-password.html?token=" + token;
+
+	        String liveLink = "https://blueaxismedia.in/reset-password.html?token=" + token;
+
 
 	        String message = "Hello,\n\n"
 	                + "Click the link below to reset your password:\n"
 	                + resetLink + "\n\n"
+	                
+	                + "Live Website:\n"
+	                + liveLink + "\n\n"
+
+	                + "Local Testing:\n"
+	                + vercelLink + "\n\n"
 	                + "If you did not request this, please ignore this email.";
 
 	        emailService.sendEmail(email, "Reset Your Password", message);

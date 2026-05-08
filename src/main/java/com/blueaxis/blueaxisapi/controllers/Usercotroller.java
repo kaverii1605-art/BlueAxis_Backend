@@ -94,44 +94,41 @@ public class Usercotroller {
 	}
 	    
 	    
-	    @PostMapping("/forgot-password")
-	    public Map<String, String> forgotPassword(@RequestBody Map<String, String> request) {
+	@PostMapping("/forgot-password")
+	public Map<String, String> forgotPassword(@RequestBody Map<String, String> request) {
 
-	        String email = request.get("email");
+	    System.out.println("FORGOT PASSWORD API HIT");
 
-	        User user = repo.findByEmail(email);
+	    String email = request.get("email");
 
-	        if (user == null) {
-	            return Map.of("message", "Email not found");
-	        }
+	    User user = repo.findByEmail(email);
 
-	        String token = UUID.randomUUID().toString();
+	    System.out.println("USER FOUND");
 
-	        user.setResetToken(token);
-	        repo.save(user);
-
-	        String resetLink = "http://127.0.0.1:5501/reset-password.html?token=" + token;
-	        String vercelLink = "https://newdeployment-two.vercel.app/reset-password.html?token=" + token;
-
-	        String liveLink = "https://blueaxismedia.in/reset-password.html?token=" + token;
-
-
-	        String message = "Hello,\n\n"
-	                + "Click the link below to reset your password:\n"
-	                + resetLink + "\n\n"
-	                
-	                + "Live Website:\n"
-	                + liveLink + "\n\n"
-
-	                + "Local Testing:\n"
-	                + vercelLink + "\n\n"
-	                + "If you did not request this, please ignore this email.";
-
-	        emailService.sendEmail(email, "Reset Your Password", message);
-
-	        return Map.of("message", "Reset password link sent to your email");
+	    if (user == null) {
+	        return Map.of("message", "Email not found");
 	    }
-	    
+
+	    String token = UUID.randomUUID().toString();
+
+	    user.setResetToken(token);
+
+	    repo.save(user);
+
+	    System.out.println("TOKEN SAVED");
+
+	    String liveLink = "https://vercel.com/kaverii1605-2174s-projects/new_deployment/reset-password.html?token=" + token;
+
+	    String message = "Reset Password:\n" + liveLink;
+
+	    System.out.println("BEFORE EMAIL");
+
+	    emailService.sendEmail(email, "Reset Your Password", message);
+
+	    System.out.println("AFTER EMAIL");
+
+	    return Map.of("message", "Reset password link sent");
+	}	    
 	    
 	    @PostMapping("/reset-password")
 	    public Map<String, String> resetPassword(@RequestBody Map<String, String> request) {

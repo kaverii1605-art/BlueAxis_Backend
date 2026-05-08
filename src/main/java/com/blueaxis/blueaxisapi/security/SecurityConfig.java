@@ -34,6 +34,7 @@ public class SecurityConfig {
                 config.addAllowedOrigin("https://blueaxis-frontend.vercel.app");
                 config.addAllowedOrigin("https://newdeployment-two.vercel.app");
                 config.addAllowedOrigin("http://localhost:5500");
+                config.addAllowedOriginPattern("https://*.vercel.app");
                 config.addAllowedOrigin("http://127.0.0.1:5500");
                 config.addAllowedOrigin("http://localhost:5501");
                 config.addAllowedOrigin("http://127.0.0.1:5501");
@@ -56,7 +57,10 @@ public class SecurityConfig {
                     "/api/postContact",
                     
                     "/api/forgot-password",
+                    "/api/forgot-password/**",
+
                     "/api/reset-password",
+                    "/api/reset-password/**",
                     "/api/test",
                     "/api/blogs",
                     "/api/articles",

@@ -29,15 +29,15 @@ public class JwtFilter extends OncePerRequestFilter {
         String path = request.getServletPath();
 
         if (
-        		  request.getMethod().equals("OPTIONS") ||
-            path.equals("/api/forgot-password") ||
-            path.equals("/api/reset-password") ||
-            path.equals("/api/login") ||
-            path.equals("/api/register") ||
-            path.equals("/api/postContact") ||
-            path.startsWith("/api/get")
+        		 request.getMethod().equals("OPTIONS") ||
+        		    path.equals("/api/register") ||
+        		    path.equals("/api/login") ||
+        		    path.equals("/api/postContact") ||
+        		    path.equals("/api/forgot-password") ||
+        		    path.equals("/api/reset-password") ||
+        		    path.startsWith("/api/get")
         ) {
-            filterChain.doFilter(request, response);
+        	filterChain.doFilter(request, response);
             return;
         }
 

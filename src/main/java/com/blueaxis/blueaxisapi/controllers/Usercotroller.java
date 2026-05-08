@@ -94,10 +94,10 @@ public class Usercotroller {
 	}
 	    
 	
-	@GetMapping("/test")
-	public String test() {
-	    return "Backend updated";
-	}
+//	@GetMapping("/test")
+//	public String test() {
+//	    return "Backend updated";
+//	}
 	    
 	@PostMapping("/forgot-password")
 	public Map<String, String> forgotPassword(@RequestBody Map<String, String> request) {

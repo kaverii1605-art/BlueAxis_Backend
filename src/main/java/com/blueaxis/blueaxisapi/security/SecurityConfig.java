@@ -29,9 +29,18 @@ public class SecurityConfig {
                 org.springframework.web.cors.CorsConfiguration config = new org.springframework.web.cors.CorsConfiguration();
 
                 config.setAllowCredentials(true);
-                config.addAllowedOriginPattern("*");
+
+                config.addAllowedOrigin("https://blueaxismedia.in");
+                config.addAllowedOrigin("https://blueaxis-frontend.vercel.app");
+                config.addAllowedOrigin("https://newdeployment-two.vercel.app");
+                config.addAllowedOrigin("http://localhost:5500");
+                config.addAllowedOrigin("http://127.0.0.1:5500");
+                config.addAllowedOrigin("http://localhost:5501");
+                config.addAllowedOrigin("http://127.0.0.1:5501");
+
                 config.addAllowedHeader("*");
                 config.addAllowedMethod("*");
+             
 
                 return config;
             }))

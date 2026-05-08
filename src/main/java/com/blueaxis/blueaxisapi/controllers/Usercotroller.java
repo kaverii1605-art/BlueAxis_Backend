@@ -117,8 +117,7 @@ public class Usercotroller {
 
 	    System.out.println("TOKEN SAVED");
 
-	    String liveLink = "https://vercel.com/kaverii1605-2174s-projects/new_deployment/reset-password.html?token=" + token;
-
+	    String liveLink = "https://newdeployment-two.vercel.app/reset-password.html?token=" + token;
 	    String message = "Reset Password:\n" + liveLink;
 
 	    System.out.println("BEFORE EMAIL");

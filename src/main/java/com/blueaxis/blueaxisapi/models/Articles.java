@@ -2,6 +2,7 @@ package com.blueaxis.blueaxisapi.models;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -9,8 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Articles {
 	
 
-
-	private Long id;
+@Id
+	private String id;
 
 	private String category;
 	
@@ -28,11 +29,11 @@ public class Articles {
 	        this.createdAt = LocalDateTime.now();
 	    }
 
-		public Long getId() {
+		public String getId() {
 			return id;
 		}
 
-		public void setId(Long id) {
+		public void setId(String id) {
 			this.id = id;
 		}
 

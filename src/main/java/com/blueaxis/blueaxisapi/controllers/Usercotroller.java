@@ -21,7 +21,7 @@ import com.blueaxis.blueaxisapi.services.UserService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class Usercotroller {
 
 	@Autowired

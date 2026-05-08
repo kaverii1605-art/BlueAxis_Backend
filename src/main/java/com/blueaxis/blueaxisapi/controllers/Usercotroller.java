@@ -80,6 +80,9 @@ public class Usercotroller {
 	    Map<String,String> response = new HashMap<>();
 
 	    try {
+	    	
+	    	user.setResetToken(UUID.randomUUID().toString());
+	    	
 	        service.saveUser(user);
 
 	        response.put("message", "User registered successfully");

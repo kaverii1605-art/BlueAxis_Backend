@@ -60,16 +60,38 @@ public class Usercotroller {
 	}
 	
 
-	    @PostMapping("/register")
-	    public Map<String,String> register(@RequestBody User user){
+//	    @PostMapping("/register")
+//	    public Map<String,String> register(@RequestBody User user){
+//	    	System.out.println("REGISTER API HIT");
+//
+//	        service.saveUser(user);
+//
+//	        Map<String,String> response = new HashMap<>();
+//	        response.put("message","User registered successfully");
+//
+//	        return response;
+//	    }
+	
+	@PostMapping("/register")
+	public ResponseEntity<Map<String,String>> register(@RequestBody User user){
 
+	    System.out.println("REGISTER API HIT");
+
+	    Map<String,String> response = new HashMap<>();
+
+	    try {
 	        service.saveUser(user);
 
-	        Map<String,String> response = new HashMap<>();
-	        response.put("message","User registered successfully");
+	        response.put("message", "User registered successfully");
+	        return ResponseEntity.ok(response);
 
-	        return response;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+
+	        response.put("message", e.getMessage());
+	        return ResponseEntity.status(500).body(response);
 	    }
+	}
 	    
 	    
 	    @PostMapping("/forgot-password")

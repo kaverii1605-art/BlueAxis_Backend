@@ -73,7 +73,9 @@ public class SecurityConfig {
                     "/api/getarticles",
                     "/api/getarticle/**",
                     "/api/getinfo",
-                    "/api/getinfographic/**"
+                    "/api/getinfographic/**",
+                    
+                    "/api/version"
                 ).permitAll()
 
                 // keep these authenticated if they are admin pages

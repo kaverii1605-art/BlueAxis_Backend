@@ -157,6 +157,11 @@ public class Usercotroller {
 	        return Map.of("message", "Password reset successfully");
 	    }
 	    
+	    @GetMapping("/version")
+	    public Map<String, String> version() {
+	        return Map.of("version", "backend-updated-10-may-2026");
+	    }
+	    
 }
 	    
 //	    @PostMapping("/login")

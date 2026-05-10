@@ -40,10 +40,17 @@ public class BlogController {
     
     
     @GetMapping("/getblogs")
-    public List<BlogSummaryDto> getBlogs(){
+    public List<BlogSummaryDto> getBlogs() {
 
-    return blogRepository.findAllBlogSummaries();
-
+        return blogRepository.findAll()
+                .stream()
+                .map(blog -> new BlogSummaryDto(
+                        blog.getId(),
+                        blog.getTitle(),
+                        blog.getCategory(),
+                        blog.getImageUrl()
+                ))
+                .toList();
     }
   
 

@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-
-
 @Document(collection = "blogs")
 
 public class Blog {

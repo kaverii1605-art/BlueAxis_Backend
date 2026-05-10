@@ -83,6 +83,7 @@ public class SecurityConfig {
                     "/api/addinfo"
                 ).authenticated()
 
+                .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

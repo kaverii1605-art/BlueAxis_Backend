@@ -67,6 +67,8 @@ public class SecurityConfig {
                     "/api/infographics",
                    
                     "/api/getblogs",
+                    "/api/blogs",
+                    
                     "/api/getblog/**",
                     "/api/getarticles",
                     "/api/getarticle/**",

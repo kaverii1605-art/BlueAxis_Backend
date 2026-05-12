@@ -182,7 +182,7 @@ public class Usercotroller {
 	            String liveLink = "https://newdeployment-two.vercel.app/reset-password.html?token=" + token;
 	            String message = "Reset Password:\n" + liveLink;
 
-	            emailService.sendEmail(email, "Reset Your Password", message);
+//	            emailService.sendEmail(email, "Reset Your Password", message);
 
 	            response.put("message", "Reset password link sent");
 	            return ResponseEntity.ok(response);

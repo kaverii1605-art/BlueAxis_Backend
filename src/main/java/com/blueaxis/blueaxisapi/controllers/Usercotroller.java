@@ -162,6 +162,13 @@ public class Usercotroller {
 	        return Map.of("version", "backend-updated-10-may-2026");
 	    }
 	    
+	    
+	    
+	    @GetMapping("/forgot-password-test")
+	    public String forgotPasswordTest() {
+	        return "forgot password public endpoint working";
+	    }
+	    
 }
 	    
 //	    @PostMapping("/login")
@@ -209,4 +216,6 @@ public class Usercotroller {
 //	        }
 //
 //	    }}
+
+
 

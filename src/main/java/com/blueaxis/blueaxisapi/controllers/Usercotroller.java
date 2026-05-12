@@ -102,60 +102,99 @@ public class Usercotroller {
 //	    return "Backend updated";
 //	}
 	    
-	@PostMapping("/forgot-password")
-	public Map<String, String> forgotPassword(@RequestBody Map<String, String> request) {
-
-	    System.out.println("FORGOT PASSWORD API HIT");
-
-	    String email = request.get("email");
-
-	    User user = repo.findByEmail(email);
-
-	    System.out.println("USER FOUND");
-
-	    if (user == null) {
-	        return Map.of("message", "Email not found");
-	    }
-
-	    String token = UUID.randomUUID().toString();
-
-	    user.setResetToken(token);
-
-	    repo.save(user);
-
-	    System.out.println("TOKEN SAVED");
-
-	    String liveLink = "https://newdeployment-two.vercel.app/reset-password.html?token=" + token;
-	    String message = "Reset Password:\n" + liveLink;
-
-	    System.out.println("BEFORE EMAIL");
-
-	    emailService.sendEmail(email, "Reset Your Password", message);
-
-	    System.out.println("AFTER EMAIL");
-
-	    return Map.of("message", "Reset password link sent");
-	}	    
+//	@PostMapping("/forgot-password")
+//	public Map<String, String> forgotPassword(@RequestBody Map<String, String> request) {
+//
+//	    System.out.println("FORGOT PASSWORD API HIT");
+//
+//	    String email = request.get("email");
+//
+//	    User user = repo.findByEmail(email);
+//
+//	    System.out.println("USER FOUND");
+//
+//	    if (user == null) {
+//	        return Map.of("message", "Email not found");
+//	    }
+//
+//	    String token = UUID.randomUUID().toString();
+//
+//	    user.setResetToken(token);
+//
+//	    repo.save(user);
+//
+//	    System.out.println("TOKEN SAVED");
+//
+//	    String liveLink = "https://newdeployment-two.vercel.app/reset-password.html?token=" + token;
+//	    String message = "Reset Password:\n" + liveLink;
+//
+//	    System.out.println("BEFORE EMAIL");
+//
+//	    emailService.sendEmail(email, "Reset Your Password", message);
+//
+//	    System.out.println("AFTER EMAIL");
+//
+//	    return Map.of("message", "Reset password link sent");
+//	}	    
+//	    
+//	    @PostMapping("/reset-password")
+//	    public Map<String, String> resetPassword(@RequestBody Map<String, String> request) {
+//
+//	        String token = request.get("token");
+//	        String newPassword = request.get("password");
+//
+//	        User user = repo.findByResetToken(token);
+//
+//	        if (user == null) {
+//	            return Map.of("message", "Invalid or expired reset link");
+//	        }
+//
+//	        user.setPassword(passwordEncoder.encode(newPassword));
+//	        user.setResetToken(null);
+//
+//	        repo.save(user);
+//
+//	        return Map.of("message", "Password reset successfully");
+//	    }
+//	    
 	    
-	    @PostMapping("/reset-password")
-	    public Map<String, String> resetPassword(@RequestBody Map<String, String> request) {
+	    
+	    
+	    @PostMapping("/send-reset-link")
+	    public ResponseEntity<Map<String, String>> sendResetLink(@RequestBody Map<String, String> request) {
 
-	        String token = request.get("token");
-	        String newPassword = request.get("password");
+	        Map<String, String> response = new HashMap<>();
 
-	        User user = repo.findByResetToken(token);
+	        try {
+	            String email = request.get("email");
 
-	        if (user == null) {
-	            return Map.of("message", "Invalid or expired reset link");
+	            User user = repo.findByEmail(email);
+
+	            if (user == null) {
+	                response.put("message", "Email not found");
+	                return ResponseEntity.status(404).body(response);
+	            }
+
+	            String token = UUID.randomUUID().toString();
+	            user.setResetToken(token);
+	            repo.save(user);
+
+	            String liveLink = "https://newdeployment-two.vercel.app/reset-password.html?token=" + token;
+	            String message = "Reset Password:\n" + liveLink;
+
+	            emailService.sendEmail(email, "Reset Your Password", message);
+
+	            response.put("message", "Reset password link sent");
+	            return ResponseEntity.ok(response);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            response.put("message", e.getMessage());
+	            return ResponseEntity.status(500).body(response);
 	        }
-
-	        user.setPassword(passwordEncoder.encode(newPassword));
-	        user.setResetToken(null);
-
-	        repo.save(user);
-
-	        return Map.of("message", "Password reset successfully");
 	    }
+	    
+	    
 	    
 	    @GetMapping("/version")
 	    public Map<String, String> version() {

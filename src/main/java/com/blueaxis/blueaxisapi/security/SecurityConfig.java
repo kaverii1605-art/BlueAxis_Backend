@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/register").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/forgot-password").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/send-reset-link").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/reset-password").permitAll()
 
                 .requestMatchers(
@@ -61,8 +61,8 @@ public class SecurityConfig {
                     "/api/login",
                     "/api/postContact",
                     
-                    "/api/forgot-password",
-                    "/api/forgot-password/**",
+                    "/api/send-reset-link",
+                    "/api/send-reset-link/**",
 
                     "/api/reset-password",
                     "/api/reset-password/**",

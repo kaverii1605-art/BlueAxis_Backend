@@ -79,6 +79,7 @@ public class SecurityConfig {
                     "/api/getarticle/**",
                     "/api/getinfo",
                     "/api/getinfographic/**",
+                    "/api/forgot-password-test",
                     
                     "/api/version"
                 ).permitAll()

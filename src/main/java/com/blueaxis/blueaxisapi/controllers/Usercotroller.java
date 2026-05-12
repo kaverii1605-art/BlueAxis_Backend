@@ -158,7 +158,36 @@ public class Usercotroller {
 //	    }
 //	    
 	    
-	    
+	@PostMapping("/update-password")
+	public ResponseEntity<Map<String, String>> updatePassword(@RequestBody Map<String, String> request) {
+
+	    Map<String, String> response = new HashMap<>();
+
+	    try {
+	        String token = request.get("token");
+	        String newPassword = request.get("password");
+
+	        User user = repo.findByResetToken(token);
+
+	        if (user == null) {
+	            response.put("message", "Invalid or expired reset link");
+	            return ResponseEntity.status(400).body(response);
+	        }
+
+	        user.setPassword(passwordEncoder.encode(newPassword));
+	        user.setResetToken(null);
+
+	        repo.save(user);
+
+	        response.put("message", "Password reset successfully");
+	        return ResponseEntity.ok(response);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.put("message", e.getMessage());
+	        return ResponseEntity.status(500).body(response);
+	    }
+	}	    
 	    
 	    @PostMapping("/send-reset-link")
 	    public ResponseEntity<Map<String, String>> sendResetLink(@RequestBody Map<String, String> request) {

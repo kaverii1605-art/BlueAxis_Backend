@@ -64,8 +64,8 @@ public class SecurityConfig {
                     "/api/send-reset-link",
                     "/api/send-reset-link/**",
 
-                    "/api/reset-password",
-                    "/api/reset-password/**",
+                    "/api/update-password",
+                    "/api/update-password/**",
                     "/api/test",
                     "/api/blogs",
                     "/api/articles",
